@@ -28,7 +28,7 @@ export default function AdminsPage() {
     email: "",
     password: "",
     role: "admin" as Admin["role"],
-    permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
+    permissions: ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS as AdminPermissions,
   })
 
   // Check if current user is owner
@@ -190,7 +190,7 @@ export default function AdminsPage() {
         email: "",
         password: "",
         role: "admin",
-        permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
+        permissions: ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS as AdminPermissions,
       })
       setIsCreateDialogOpen(false)
     } catch (error: any) {
@@ -220,7 +220,7 @@ export default function AdminsPage() {
       email: admin.email,
       password: "",
       role: admin.role,
-      permissions: admin.permissions || { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
+      permissions: (admin.permissions ?? ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS) as AdminPermissions,
     })
     setIsEditDialogOpen(true)
   }

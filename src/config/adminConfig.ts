@@ -1,5 +1,6 @@
 // Admin Panel Configuration
 // Owner credentials - Change these in production!
+import type { AdminPermissions } from "@/types/admin";
 
 export const ADMIN_CONFIG = {
   // Owner credentials (hardcoded for security)
@@ -29,7 +30,7 @@ export const ADMIN_CONFIG = {
     reports: { view: true, export: false },
     settings: { view: false, edit: false },
     admins: { view: false, create: false },
-  },
+  } as AdminPermissions,
 };
 
 export type AdminRole = "owner" | "super_admin" | "admin" | "moderator" | "support";
