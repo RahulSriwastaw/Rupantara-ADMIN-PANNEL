@@ -171,7 +171,7 @@ export const adminTemplatesApi = {
       : null
 
     const formData = new FormData()
-    formData.append('file', file)
+    formData.append('image', file)
 
     const response = await fetch(`${API_URL}/admin/upload/template-demo`, {
       method: 'POST',

@@ -62,6 +62,7 @@ export default function TemplatesPage() {
     state: "",
     isActive: true,
     demoFile: null as File | null,
+    exampleImages: [] as string[],
     visiblePrompt: "",
     hiddenPrompt: "",
     negativePrompt: "",
@@ -227,6 +228,8 @@ export default function TemplatesPage() {
         subCategory: form.subCategory,
         tags: form.tagsText ? form.tagsText.split(',').map((t: string) => t.trim()).filter(Boolean) : [],
         demoImage: demoImageUrl,
+        exampleImages: form.exampleImages,
+        prompt: form.hiddenPrompt,
         visiblePrompt: form.visiblePrompt,
         hiddenPrompt: form.hiddenPrompt,
         negativePrompt: form.negativePrompt,
@@ -261,6 +264,7 @@ export default function TemplatesPage() {
         state: "",
         isActive: true,
         demoFile: null,
+        exampleImages: [],
         visiblePrompt: "",
         hiddenPrompt: "",
         negativePrompt: "",
@@ -497,6 +501,30 @@ export default function TemplatesPage() {
               <div className="space-y-2">
                 <Label>Demo Image</Label>
                 <Input type="file" accept="image/*" onChange={(e) => setForm({ ...form, demoFile: e.target.files?.[0] || null })} />
+              </div>
+              <div className="md:col-span-2 space-y-2">
+                <Label>Example Images (optional)</Label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {[0,1,2].map((i) => (
+                    <div key={i} className="space-y-2">
+                      <Input type="file" accept="image/*" onChange={(e) => {
+                        const f = e.target.files?.[0]
+                        if (!f) return
+                        const reader = new FileReader()
+                        reader.onload = (ev) => {
+                          const result = ev.target?.result as string
+                          const next = [...form.exampleImages]
+                          next[i] = result
+                          setForm({ ...form, exampleImages: next })
+                        }
+                        reader.readAsDataURL(f)
+                      }} />
+                      {form.exampleImages[i] && (
+                        <img src={form.exampleImages[i]} alt="example" className="w-full h-24 object-cover rounded border" />
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
               <div className="md:col-span-2 space-y-2">
                 <Label>Visible Prompt</Label>
