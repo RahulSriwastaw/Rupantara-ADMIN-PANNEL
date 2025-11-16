@@ -220,6 +220,7 @@ export default function AdminsPage() {
       email: admin.email,
       password: "",
       role: admin.role,
+      // Explicitly cast to AdminPermissions to resolve TypeScript type error
       permissions: admin.permissions || { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS } as AdminPermissions,
     })
     setIsEditDialogOpen(true)
