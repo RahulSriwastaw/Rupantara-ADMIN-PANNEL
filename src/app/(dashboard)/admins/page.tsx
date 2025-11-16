@@ -190,7 +190,7 @@ export default function AdminsPage() {
         email: "",
         password: "",
         role: "admin",
-        permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
+        permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS } as AdminPermissions,
       })
       setIsCreateDialogOpen(false)
     } catch (error: any) {
