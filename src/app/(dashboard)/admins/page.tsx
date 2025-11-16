@@ -28,7 +28,7 @@ export default function AdminsPage() {
     email: "",
     password: "",
     role: "admin" as Admin["role"],
-    permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS } as AdminPermissions,
+    permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
   })
 
   // Check if current user is owner
@@ -190,7 +190,7 @@ export default function AdminsPage() {
         email: "",
         password: "",
         role: "admin",
-        permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS } as AdminPermissions,
+        permissions: { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
       })
       setIsCreateDialogOpen(false)
     } catch (error: any) {
@@ -220,8 +220,7 @@ export default function AdminsPage() {
       email: admin.email,
       password: "",
       role: admin.role,
-      // Explicitly cast to AdminPermissions to resolve TypeScript type error
-      permissions: admin.permissions || { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS } as AdminPermissions,
+      permissions: admin.permissions || { ...ADMIN_CONFIG.DEFAULT_SUB_ADMIN_PERMISSIONS },
     })
     setIsEditDialogOpen(true)
   }

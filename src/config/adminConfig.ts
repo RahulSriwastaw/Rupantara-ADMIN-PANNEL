@@ -30,7 +30,6 @@ export const ADMIN_CONFIG = {
     settings: { view: false, edit: false },
     admins: { view: false, create: false },
   },
-} as const;
+};
 
 export type AdminRole = "owner" | "super_admin" | "admin" | "moderator" | "support";
-
