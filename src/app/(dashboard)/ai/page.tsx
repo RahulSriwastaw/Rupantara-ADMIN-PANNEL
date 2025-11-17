@@ -23,6 +23,11 @@ interface AIConfig {
   lastTested?: string
   testStatus?: 'success' | 'failed' | 'pending'
   testError?: string
+  apiKey?: string
+  apiSecret?: string
+  endpoint?: string
+  organizationId?: string
+  projectId?: string
 }
 
 const PROVIDER_OPTIONS = [
