@@ -1,5 +1,3 @@
-// Admin Panel Configuration
-// Owner credentials - Change these in production!
 import type { AdminPermissions } from "@/types/admin";
 
 // FIX 1: Convert literal-locked permissions object into normal boolean-tolerant type
