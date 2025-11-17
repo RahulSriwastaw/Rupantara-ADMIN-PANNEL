@@ -527,15 +527,18 @@ export default function AdminsPage() {
                   <div key={section} className="space-y-2">
                     <p className="font-medium capitalize">{section}</p>
                     <div className="flex gap-4 ml-4">
-                      {Object.entries(perms).map(([action, value]) => (
-                        <div key={action} className="flex items-center gap-2">
-                          <Checkbox
-                            checked={value as boolean}
-                            onCheckedChange={() => togglePermission(section as keyof AdminPermissions, action)}
-                          />
-                          <Label className="text-sm capitalize">{action}</Label>
-                        </div>
-                      ))}
+                      {Object.entries(perms).map(([action, value]) => {
+                        const boolValue = typeof value === 'boolean' ? value : false
+                        return (
+                          <div key={action} className="flex items-center gap-2">
+                            <Checkbox
+                              checked={boolValue}
+                              onCheckedChange={() => togglePermission(section as keyof AdminPermissions, action)}
+                            />
+                            <Label className="text-sm capitalize">{action}</Label>
+                          </div>
+                        )
+                      })}
                     </div>
                   </div>
                 ))}
