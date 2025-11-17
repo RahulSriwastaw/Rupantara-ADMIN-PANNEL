@@ -300,13 +300,14 @@ export default function AdminsPage() {
   }
 
   const togglePermission = (section: keyof AdminPermissions, action: string) => {
+    const sectionPerms = formData.permissions[section] as Record<string, boolean>
     setFormData({
       ...formData,
       permissions: {
         ...formData.permissions,
         [section]: {
-          ...formData.permissions[section],
-          [action]: !formData.permissions[section][action as keyof typeof formData.permissions[typeof section]],
+          ...sectionPerms,
+          [action]: !sectionPerms[action],
         },
       },
     })
@@ -380,10 +381,10 @@ export default function AdminsPage() {
                       <div key={section} className="space-y-2">
                         <p className="font-medium capitalize">{section}</p>
                         <div className="flex gap-4 ml-4">
-                          {Object.entries(perms).map(([action]) => (
+                          {Object.entries(perms).map(([action, value]) => (
                             <div key={action} className="flex items-center gap-2">
                               <Checkbox
-                                checked={formData.permissions[section as keyof AdminPermissions][action as keyof typeof perms] as boolean}
+                                checked={value as boolean}
                                 onCheckedChange={() => togglePermission(section as keyof AdminPermissions, action)}
                               />
                               <Label className="text-sm capitalize">{action}</Label>
@@ -523,10 +524,10 @@ export default function AdminsPage() {
                   <div key={section} className="space-y-2">
                     <p className="font-medium capitalize">{section}</p>
                     <div className="flex gap-4 ml-4">
-                      {Object.entries(perms).map(([action]) => (
+                      {Object.entries(perms).map(([action, value]) => (
                         <div key={action} className="flex items-center gap-2">
                           <Checkbox
-                            checked={formData.permissions[section as keyof AdminPermissions][action as keyof typeof perms] as boolean}
+                            checked={value as boolean}
                             onCheckedChange={() => togglePermission(section as keyof AdminPermissions, action)}
                           />
                           <Label className="text-sm capitalize">{action}</Label>
